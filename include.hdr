@@ -1,0 +1,33 @@
+;----------------------------------------------------------------------------
+; Register names
+;----------------------------------------------------------------------------
+pc              RN  15
+lr              RN  14
+sp              RN  13
+ws              RN  12
+
+;----------------------------------------------------------------------------
+; Module workspace
+;----------------------------------------------------------------------------
+no_keys                 *   256
+
+;----------------------------------------------------------------------------
+; SWIs, constants etc.
+;----------------------------------------------------------------------------
+swi_error_bit           *   1:SHL:17
+
+XOS_Module              *   &1E     :OR:swi_error_bit
+XOS_Claim               *   &1F     :OR:swi_error_bit
+XOS_Release             *   &20     :OR:swi_error_bit
+XOS_NewLine             *   &03     :OR:swi_error_bit
+XOS_ConvertCardinal4    *   &D8     :OR:swi_error_bit
+XOS_ReadUnsigned        *   &21     :OR:swi_error_bit
+XOS_Write0              *   &02     :OR:swi_error_bit
+XOS_WriteS              *   &01     :OR:swi_error_bit
+
+KeyV                    *   &13
+KeyV_KeyPressed         *   2
+KeyV_KeyReleased        *   1
+
+;----------------------------------------------------------------------------
+        END

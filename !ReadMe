@@ -1,0 +1,58 @@
+KeyMapper
+=========
+
+Requirements
+------------
+- RISC OS 3.5 or later.
+- 26/32 bit compatible.
+
+Introduction
+------------
+KeyMapper is a small module which allows the redefinition of which keys
+produce which key codes within RISC OS. Mouse buttons are also treated as
+keys in RISC OS, so this module can be used, say, to swap SELECT and ADJUST
+over. See exaples, below.
+
+All keys are represented using RISC OS 'internal key numbers', which can be
+found in the PRMs or the OS StrongHelp manual.
+
+Command Syntax
+--------------
+  | Command               | Description                                 |
+  | --------------------- | ------------------------------------------- |
+  | `*KeyMap <from> <to>` | Maps key number <from> to <to>.             |
+  | `*KeyMap <from>`      | Show current mapping for key number <from>. |
+  | `*KeyMap`             | Show all redefined key numbers.             |
+  | `*KeyMapReset`        | Reset all redefined key numbers.            |
+
+Examples
+--------
+To swap mouse SELECT and ADJUST buttons:
+    *KeyMap 112 114
+    *KeyMap 114 112
+
+These mappings alone can be reset using:
+    *KeyMap 112 112
+    *MeyMap 114 114
+
+Comments and Updates
+--------------------
+The latest release is on GitHub <https://github.com/effarig/ro-key-mapper>.
+
+Please and send any bug reports, comments, suggestions etc. using GitHub.
+
+Changes
+-------
+1.00 (01-Jan-2022):
+  * Reorganised for GitHub.
+  * Add license.
+  * Removed tabs from sources.
+  * Updated !ReadMe.
+  * Replace `Jamfile` with AMU `Makefile`.
+
+0.01 (25-Jun-2004):
+  * Initial release.
+
+License
+-------
+See LICENSE file.
