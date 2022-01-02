@@ -18,8 +18,11 @@ All keys are represented using RISC OS 'internal key numbers', which can be
 found in the PRMs or the OS StrongHelp manual.
 
 
-Command Syntax
---------------
+Usage
+-----
+Once the module is loaded the key mappings are configured using the
+`*KeyMap` command.
+
   | Command               | Description                                 |
   | --------------------- | ------------------------------------------- |
   | `*KeyMap <from> <to>` | Maps key number _from_ to _to_.             |
@@ -38,7 +41,7 @@ To swap mouse SELECT and ADJUST buttons:
 These mappings alone can be reset using:
 
     *KeyMap 112 112
-    *MeyMap 114 114
+    *KeyMap 114 114
 
 
 Comments and Updates
