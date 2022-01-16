@@ -8,6 +8,7 @@ OBJS 	= module.o
 MODNAME = KeyMapper
 MODFILE = KeyMapper
 TGT  	= rm.$(MODFILE)
+RELEASEDIR = Dist
 ZIPDIST = keymapper/zip
 MODDIST = !System.350.Modules.$(MODFILE)
 INSTALL = <System$Dir>.350.Modules.$(MODFILE)
@@ -23,12 +24,22 @@ run: $(TGT)
 
 
 dist: $(TGT)
-	@echo Removing previous distribution archive...
-	@-wipe $(ZIPDIST) F~VR~C
+	@echo Removing previous distribution archive and directory...
+	@remove $(ZIPDIST)
+	@-wipe ${RELEASEDIR} F~VR~C
+	@echo Creating target directories
+	@cdir ${RELEASEDIR}
+	@cdir ${RELEASEDIR}.!System
+	@cdir ${RELEASEDIR}.!System.350
+	@cdir ${RELEASEDIR}.!System.350.Modules
 	@echo Copying $(TGT) to $(MODDIST)
-	@copy $(TGT) $(MODDIST) A~CF~L~N~P~QR~S~T~V
+	@copy $(TGT) ${RELEASEDIR}.$(MODDIST) A~CF~L~N~P~QR~S~T~V
+	@copy !ReadMe ${RELEASEDIR}.!ReadMe A~CF~L~N~P~QR~S~T~V
+	@copy LICENSE ${RELEASEDIR}.LICENSE A~CF~L~N~P~QR~S~T~V
 	@echo Zipping as $(ZIPDIST)...
-	@zip -9 -r $(ZIPDIST) $(DIST)
+	@dir ${RELEASEDIR}
+	@zip -9 -r \.$(ZIPDIST) $(DIST)
+	@back
 	@echo Done.
 
 clean:
@@ -36,8 +47,8 @@ clean:
 	@-wipe rm F~VR~C
 	@echo removing object files...
 	@-wipe o F~VR~C
-	@echo removing dist module...
-	@-wipe $(MODDIST)  F~VR~C
+	@echo removing dist directory...
+	@-wipe ${RELEASEDIR}  F~VR~C
 	@echo removing dist zip...
 	@-wipe $(ZIPDIST)  F~VR~C
 
