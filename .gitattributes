@@ -1,0 +1,2 @@
+*.s gitlab-language=armasm linguist-language=assembly
+*.hdr gitlab-language=armasm linguist-language=assembly
